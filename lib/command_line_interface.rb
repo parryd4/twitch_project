@@ -19,7 +19,7 @@ def welcome
   puts "The database has been populated at #{Time.now}."
   puts "You can type 'ping' to get the most current data."
 end
-
+#
 
 def search_type
   types = ["games","videos","streams","exit"]

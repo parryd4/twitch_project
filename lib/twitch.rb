@@ -10,7 +10,7 @@ def get_top_games
   api = RestClient.get(url)
   hash = JSON.parse(api)
 end
-
+#
 #starting point
 data_url = "https://api.twitch.tv/kraken/channels/geekandsundry?client_id=14ti3recizod3yw0d2tj9syjdyj655"
 film_api = RestClient.get(data_url)
