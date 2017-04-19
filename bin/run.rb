@@ -44,12 +44,12 @@ def make_hash_from_url(url, offset = 0)
 end
 #
 def populate_videos
+  time = Time.now
   videos_url = Url_start + "videos/top" + Url_args
   offset = 0
   hash = {}
 
   while offset < 1001 #videos Offset max value is 1000
-    puts time
     hash = make_hash_from_url(videos_url,offset)
     hash["videos"].each do |video|
       Video.create(
@@ -62,7 +62,7 @@ def populate_videos
         broadcast_type: video["broadcast_type"],
         language: video["language"],
         views: video["views"],
-        length: video["length"],
+        length: video["length"]
       )
     end
     offset += 100
@@ -81,7 +81,7 @@ def populate_streams_and_channels
   puts "total_streams: #{total_streams}"
   blank = []
 
-  while offset < 1000 #Express Mode total_streams
+  while offset < 2000 #Express Mode total_streams
     hash = make_hash_from_url(streams_url,offset)
     hash["streams"].each do |x|
 
@@ -91,8 +91,7 @@ def populate_streams_and_channels
         stream_started: x["created_at"],
         status: x["channel"]["status"],
         game_name: x["game"],
-        viewers: x["viewers"],
-        channel_id: x["channel"]["_id"]
+        viewers: x["viewers"]
       )
 
       Channel.create(
@@ -102,6 +101,8 @@ def populate_streams_and_channels
         url: x["channel"]["url"],
         mature: x["channel"]["mature"],
         partner: x["channel"]["partner"],
+        videos_url: x["channel"]["videos"],
+        teams: x["channel"]["teams"],
         language: x["channel"]["language"],
         views: x["channel"]["views"],
         followers: x["channel"]["followers"]
@@ -110,10 +111,10 @@ def populate_streams_and_channels
     offset += 100
   end
 
-  puts Time.now - time
+  puts "populating streams and channels took #{Time.now - time} seconds"
 end
-#populate_games
-#populate_streams_and_channels
+populate_games
+populate_streams_and_channels
 populate_videos
 
 puts "hi"

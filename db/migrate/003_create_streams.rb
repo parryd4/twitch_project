@@ -6,8 +6,7 @@ class CreateStreams < ActiveRecord::Migration[4.2]
       t.string :stream_started
       t.string :status
       t.string :game_name
-      t.integer :viewers
-      t.string :channel_id
+      t.string :viewers
 
       t.timestamps
     end

@@ -7,9 +7,11 @@ class CreateChannels < ActiveRecord::Migration[4.2]
       t.string :url
       t.boolean :mature
       t.boolean :partner
+      t.string :videos_url
+      t.string :teams
       t.string :language
       t.string :views
-      t.integer :followers
+      t.string :followers
 
       t.timestamps
     end
