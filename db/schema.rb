@@ -13,8 +13,14 @@
 ActiveRecord::Schema.define(version: 4) do
 
   create_table "channels", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "views"
+    t.string   "name"
+    t.string   "channel_id"
+    t.string   "channel_creation"
+    t.string   "url"
+    t.boolean  "mature"
+    t.boolean  "partner"
+    t.string   "language"
+    t.string   "views"
     t.integer  "followers"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,21 +35,25 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "streams", force: :cascade do |t|
-    t.integer  "stream_id"
+    t.string   "stream_id"
+    t.string   "channel_name"
     t.string   "stream_started"
     t.string   "status"
     t.string   "game_name"
-    t.string   "channel_name"
-    t.integer  "channel_id"
     t.integer  "viewers"
+    t.string   "channel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "videos", force: :cascade do |t|
     t.string   "title"
-    t.integer  "game_id"
-    t.integer  "channel_id"
+    t.string   "url"
+    t.integer  "broadcast_id"
+    t.integer  "channel_name"
+    t.string   "video_creation"
+    t.string   "broadcast_type"
+    t.string   "language"
     t.integer  "views"
     t.integer  "length"
     t.datetime "created_at"
