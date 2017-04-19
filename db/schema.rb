@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "streams", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "game_id"
+    t.integer  "stream_id"
+    t.string   "stream_started"
+    t.string   "status"
+    t.string   "game_name"
+    t.string   "channel_name"
     t.integer  "channel_id"
     t.integer  "viewers"
     t.datetime "created_at"

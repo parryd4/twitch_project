@@ -1,5 +1,5 @@
 require 'active_record'
-
+#require_relative 'config/environment.rb'
 
 task :environment do
   ENV["ACTIVE_RECORD_ENV"] ||= "development"
