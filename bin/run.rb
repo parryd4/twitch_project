@@ -4,3 +4,7 @@ require_relative '../config/environment.rb'
 
 puts "Welcome!"
 #
+def populate_games
+
+
+end

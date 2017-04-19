@@ -1,4 +1,4 @@
-{
+channel_sample = {
   "mature": false,
   "status": "Monday Rebroadcast! Required Viewing, Ready BET Go! and Dick & Johnson! Enjoy!",
   "broadcaster_language": "en",

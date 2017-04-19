@@ -1,4 +1,4 @@
-game_hash = {
+game_sample = {
   "_total": 1474,
   "_links": {
     "self": "https://api.twitch.tv/kraken/games/top?limit=10",

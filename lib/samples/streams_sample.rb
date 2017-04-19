@@ -1,4 +1,4 @@
-{
+stream_sample = {
   "_total": 28047,
   "streams": [
     {

@@ -1,4 +1,4 @@
-{
+video_sample = {
   "_links": {
     "self": "https://api.twitch.tv/kraken/videos/top?broadcast_type=highlight&limit=10",
     "next": "https://api.twitch.tv/kraken/videos/top?broadcast_type=highlight&limit=10&offset=10"
