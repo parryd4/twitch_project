@@ -5,14 +5,17 @@ Bundler.require
 require 'pry'
 require 'rake'
 require 'active_record'
-require 'yaml/store'
+#require 'yaml/store'
 require 'ostruct'
 require 'date'
 require 'sqlite3'
+require 'rest-client'
 
 
 DBNAME = "twitch"
 #
+require_relative '../lib/twitchbase.rb'
+require_relative '../lib/queries.rb'
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 #Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
 #Dir[File.join(File.dirname(__FILE__), "../lib/samples", "*.rb")].each {|f| require f}

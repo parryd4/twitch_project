@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
-    t.string   "viewers"
+    t.integer  "viewers",    limit: 8
     t.integer  "channels"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "stream_started"
     t.string   "status"
     t.string   "game_name"
-    t.string   "viewers"
+    t.integer  "viewers",        limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end

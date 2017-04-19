@@ -6,7 +6,7 @@ class CreateStreams < ActiveRecord::Migration[4.2]
       t.string :stream_started
       t.string :status
       t.string :game_name
-      t.string :viewers
+      t.integer :viewers, :limit => 8
 
       t.timestamps
     end
