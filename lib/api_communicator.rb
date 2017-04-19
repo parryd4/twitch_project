@@ -1,71 +1,71 @@
 require 'rest-client'
 require 'json'
 require 'pry'
-
-data_url = "https://api.twitch.tv/kraken/channels/geekandsundry"+ "?client_id=14ti3recizod3yw0d2tj9syjdyj655"
-film_api = RestClient.get(data_url)
-starting_hash = JSON.parse(film_api)
-
-def make_hash(url)
-  data_url = url + "?client_id=14ti3recizod3yw0d2tj9syjdyj655"
-  api = RestClient.get(data_url)
-  JSON.parse(api)
-end
-binding.pry
-puts ""
-
 #
-# def get_character_movies_from_api(character)
-#   attribute = get_character_attribute(character,"films")
-#   url_to_hash(attribute)
+# def get_top_games_from_api
+#   #make the web request and parse the JSON into a hash
+#   JSON.parse(RestClient.get('https://api.twitch.tv/kraken/games/top?client_id=8c62koccz5yyd663djbo1lpydgcbnw'))
+# end
+#
+# def get_top_videos_from_api
+#   JSON.parse(RestClient.get('https://api.twitch.tv/kraken/videos/top?client_id=8c62koccz5yyd663djbo1lpydgcbnw'))
+# end
+#
+# def get_streams_from_api
+#   JSON.parse(RestClient.get('https://api.twitch.tv/kraken/streams?client_id=8c62koccz5yyd663djbo1lpydgcbnw'))
+# end
+
+def ping
+  puts "Getting all data from Twitch, please wait (there's a lot here)."
+  types = {games: "games/top", videos:"videos/top", streams:"streams"}
+  master_hash = {}
+  types.each do |key, value|
+    master_hash[key] = JSON.parse(RestClient.get('https://api.twitch.tv/kraken/' + value + '?client_id=8c62koccz5yyd663djbo1lpydgcbnw'))
+  end
+  master_hash
+  binding.pry
+end
+
+def say_goodbye() puts "Thanks for stopping by!" end
+
+  # master_hash[:games]["_total"]
+
+get_info_from_api
+
+binding.pry
+
+# type == "streams" ? type : type + '/top'
+#
+#
+# def attribute_converter (attribute, info)
+#   puts "#{attribute.capitalize}:"
+#   puts
+#   info.each { |individual_subject|
+#     puts JSON.parse(RestClient.get(individual_subject))["name"]
+#   }
+#   puts
 # end
 #
 # def parse_character_movies(films_hash)
-#   films_hash.each.with_index(1) do |key, index|
-#     puts "#{index}. #{key["title"]}"
-#   end
-# end
-#
-# def show_character_movies(character)
-#   films_hash = get_character_movies_from_api(character)
-#   parse_character_movies(films_hash)
-# end
-#
-# ## BONUS
-#
-# # that `get_character_movies_from_api` method is probably pretty long. Does it do more than one job?
-# # can you split it up into helper methods?
-#
-# def get_character_attribute(character, attribute)
-#   array = []
-#   next_page = "http://www.swapi.co/api/people/?page=1"
-#
-#   while next_page != nil && array == [] do
-#     all_characters = RestClient.get(next_page)
-#     character_hash = JSON.parse(all_characters)
-#
-#     character_hash["results"].each do |item|
-#       if item["name"].downcase == character
-#         array = item[attribute]
+#   # some iteration magic and puts out the movies in a nice list
+#   films_hash.each { |film|
+#     puts "*" * 30
+#     film.each { |attribute, info|
+#       case attribute
+#       when "opening_crawl"
+#         puts "#{attribute.capitalize}:\n\n#{info.center(60)}"
+#         puts
+#       when "characters", "planets" ,"starships", "vehicles", "species"
+#       attribute_converter(attribute, info)
+#       else
+#         puts "#{attribute.capitalize}: #{info}"
+#         puts
 #       end
-#     end
-#     next_page = character_hash["next"]
-#   end
-#   array
+#     }
+#   }
 # end
 #
-# def url_to_hash(data_url)
-#   film_api_array = []
-#   if data_url.class == String
-#     film_api = RestClient.get(data_url)
-#     return JSON.parse(film_api)
-#     #film_api_array << film_api_hash
-#   elsif data_url.class == Array
-#     data_url.each do |url|
-#       film_api = RestClient.get(url)
-#       film_api_hash = JSON.parse(film_api)
-#       film_api_array << film_api_hash
-#     end
-#   end
-#   film_api_array
+# def show_character_movies
+#   films_hash = get_top_games_from_api
+#   parse_character_movies(films_hash)
 # end
