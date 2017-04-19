@@ -43,6 +43,32 @@ def make_hash_from_url(url, offset = 0)
   JSON.parse(api)
 end
 #
+def populate_videos
+  videos_url = Url_start + "videos/top" + Url_args
+  offset = 0
+  hash = {}
+
+  while offset < 1001 #videos Offset max value is 1000
+    puts time
+    hash = make_hash_from_url(videos_url,offset)
+    hash["videos"].each do |video|
+      Video.create(
+        title: video["title"],
+        url: video["url"],
+        broadcast_id: video["broadcast_id"],
+        game_name: video["game"],
+        channel_name: video["channel"]["display_name"],
+        video_creation: video["created_at"],
+        broadcast_type: video["broadcast_type"],
+        language: video["language"],
+        views: video["views"],
+        length: video["length"],
+      )
+    end
+    offset += 100
+  end
+end
+
 def populate_streams_and_channels
   time = Time.now
   hash = {}
@@ -86,7 +112,8 @@ def populate_streams_and_channels
 
   puts Time.now - time
 end
-populate_games
-populate_streams_and_channels
+#populate_games
+#populate_streams_and_channels
+populate_videos
 
 puts "hi"

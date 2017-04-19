@@ -49,7 +49,8 @@ ActiveRecord::Schema.define(version: 4) do
   create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.integer  "broadcast_id"
+    t.string   "broadcast_id"
+    t.string   "game_name"
     t.integer  "channel_name"
     t.string   "video_creation"
     t.string   "broadcast_type"
