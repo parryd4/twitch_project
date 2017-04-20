@@ -1,3 +1,19 @@
+----
+Thursday
+
+def average_rating
+  self.reviews.average(:rating).to_f
+
+def num_reviews
+  self.reviews.count
+
+
+
+
+
+-----
+Wednesday
+
 1. Put default data into database so that when app loads, can show user info
 
 2. if user makes search and no results, go to API to see if any results are there

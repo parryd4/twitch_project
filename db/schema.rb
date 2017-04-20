@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "status"
     t.string   "game_name"
     t.integer  "viewers",        limit: 8
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

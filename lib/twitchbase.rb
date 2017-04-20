@@ -58,8 +58,10 @@ class Twitchbase
           stream_started: x["created_at"],
           status: x["channel"]["status"],
           game_name: x["game"],
-          viewers: x["viewers"]
+          viewers: x["viewers"],
+          url: x["channel"]["url"]
           )
+
         Channel.create(
           name: x["channel"]["display_name"],
           channel_id: x["channel"]["_id"],
@@ -67,8 +69,8 @@ class Twitchbase
           url: x["channel"]["url"],
           mature: x["channel"]["mature"],
           partner: x["channel"]["partner"],
-          videos_url: x["channel"]["videos"],
-          teams: x["channel"]["teams"],
+          videos_url: x["channel"]["_links"]["videos"],
+          teams: x["channel"]["_links"]["teams"],
           language: x["channel"]["language"],
           views: x["channel"]["views"],
           followers: x["channel"]["followers"]

@@ -16,6 +16,7 @@ DBNAME = "twitch"
 #
 require_relative '../lib/twitchbase.rb'
 require_relative '../lib/queries.rb'
+#require_relative '../lib/command_line_interface.rb'
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 #Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
 #Dir[File.join(File.dirname(__FILE__), "../lib/samples", "*.rb")].each {|f| require f}
