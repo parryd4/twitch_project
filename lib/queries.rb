@@ -53,21 +53,48 @@ class Queries
     puts "\n These are the 10 most popular streams right now"
     var = Stream.order(viewers: :desc).first(10).reverse
     var.each.with_index do |x,i|
-      puts "#{i+1} #{x.channel_name} streaming: #{x.game_name}. #{x.viewers} viewing.\nWatch live at #{x.url} \nStatus: #{x.status}"
+      puts "#{i+1}. #{x.channel_name} streaming: #{x.game_name}. #{x.viewers} viewing.\nWatch live at #{x.url} \nStatus: #{x.status}"
 
     end
     ""
   end
 
   def self.newest_streams
+    puts "10 Most Recently Started Streams"
     var = Stream.order(stream_started: :desc).first(10)
-    puts var.collect {|x| "#{x.channel_name} #{x.viewers} #{x.stream_started}"}
+    var.each.with_index {|x,i| puts "#{i+1} #{x.channel_name} #{x.viewers} #{x.stream_started}\nWatch live at: #{x.url}"}
+    ""
   end
 
   def self.oldest_streams
+    puts "10 Longest Currently Running Streams"
     var = Stream.order(:stream_started).first(10)
-    var.collect {|x| "#{x.channel_name} #{x.viewers} #{x.stream_started}"}
+    var.each.with_index {|x,i| puts "#{i+1} #{x.channel_name} #{x.viewers} #{x.stream_started}\nWatch live at: #{x.url}"}
+    ""
   end
 
-  # find Games/Channels/Streams "LIKE"
+  # videos: Title, ChannelName, GameName, views
+  def self.videos_top
+    puts "Top 10 Twitch Videos From This Week"
+    var = Video.order(:views).last(10).reverse
+    var.each.with_index do |x, i|
+        if x.title.length > 30
+          title = x.title[0..30] + "..."
+        else
+          title = x.title
+        end
+      puts "#{i+1}. \"#{title}\" from the game: #{x.game_name}\n#{x.channel_name}'s video has been viewed #{x.views} times"
+
+    end
+    ""
+  end
+
+  def self.games_by_videos
+    puts "Top 10 Games by Videos"
+    var = Video.group(:game_name).order('SUM(views) DESC').sum(:views).first(10)
+    var.each.with_index do |x,i|
+      puts "#{i+1}. #{x[0]}: total of #{x[1]} views"
+    end
+  end
+
 end

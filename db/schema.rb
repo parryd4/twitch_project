@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "video_creation"
     t.string   "broadcast_type"
     t.string   "language"
-    t.string   "views"
+    t.integer  "views",          limit: 8
     t.integer  "length"
     t.datetime "created_at"
     t.datetime "updated_at"

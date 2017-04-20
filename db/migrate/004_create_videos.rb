@@ -9,7 +9,7 @@ class CreateVideos < ActiveRecord::Migration[4.2]
         t.string :video_creation
         t.string :broadcast_type
         t.string :language
-        t.string :views
+        t.integer :views, :limit => 8
         t.integer :length
         t.timestamps
       end
