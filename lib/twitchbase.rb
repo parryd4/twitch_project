@@ -1,7 +1,7 @@
 class Twitchbase
 
   URL_START = "https://api.twitch.tv/kraken/"
-  URL_ARGS = "?client_id=8c62koccz5yyd663djbo1lpydgcbnw&limit=100&offset="
+  URL_ARGS = "client_id=8c62koccz5yyd663djbo1lpydgcbnw&limit=100&offset="
 
   def self.clear_tables
       Game.delete_all
@@ -25,7 +25,7 @@ class Twitchbase
   def self.populate_games
     puts "Seeding Games"
     hash = {}
-    choice = "games/top"
+    choice = "games/top?"
     offset = 0
     total_games = self.make_hash_from_url(choice)["_total"]
 
@@ -45,7 +45,7 @@ class Twitchbase
   def self.populate_streams_and_channels
     puts "Seeding Streams and Channels"
     hash = {}
-    choice = "streams"
+    choice = "streams?"
     offset = 0
     total_streams = self.make_hash_from_url(choice)["_total"]
 
@@ -84,7 +84,7 @@ class Twitchbase
     def self.populate_videos
       puts "Seeding Videos"
       hash = {}
-      choice = "videos/top"
+      choice = "videos/top?broadcast_type=all&"
       offset = 0
 
       while offset < 1000
