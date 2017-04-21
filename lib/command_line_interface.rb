@@ -30,7 +30,7 @@ end
 
 
 
-binding.pry
+#binding.pry
 welcome
 
 # Directories.each { |x,y| p y }
