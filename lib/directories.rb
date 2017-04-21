@@ -1,3 +1,4 @@
+
 # { "first_directory" => { message: "Text",
 #                  query: method,
 #                  next_directory: => { "name" => etc. } }
@@ -15,36 +16,39 @@ Directories = {
     "Top games" => {
 
         "Top games being streamed" => {
-          "By viewer count" => { "game_name_streams" => { "stream_name" => "***Open URL" } } ,
-          "By channel count" => { "game_name_streams" => { "stream_name" => "***Open URL" } } } ,
-        "Top streams playing a game" => { "game_name_streams" => { "stream_name" => "***Open URL" } } } ,
+          "Top games by viewer count" => { "Top game streams" => { "Stream info" => "Open stream" } } ,
+          "Top games by channel count" => { "Top game streams" => { "Stream info" => "Open stream" } } } ,
+        "Top streams playing a game" => { "Top game streams" => { "Stream info" => "Open stream" } } } ,
 
     "Top channels" => {
 
         "Top channels streaming" => {
-            "By viewer count" => { "channel_name" => "***OpenUrl"} ,
-            "By channel count" => { "channel_name" => "***OpenUrl"} ,
-            "By language" => { "channel_name" => "***OpenUrl"} ,
-            "By partners/non-partners" => { "channel_name" => "***OpenUrl"} } ,
-        "View a specific channel" => { "channel_name" => "***OpenUrl"} } ,
+            "Top channels by viewer count" => { "Channel info" => "Open channel"} ,
+            "Top channels by follower count" => { "Channel info" => "Open channel"} ,
+            "Top channels by language" => { "Channel info" => "Open channel"} ,
+            "Top channels by partners/non-partners" => { "Channel info" => "Open channel"} } ,
+        "Newest/oldest channels" => {
+            "Newest channels" => { "Channel info" => "Open channel"} ,
+            "Oldest channels" => { "Channel info" => "Open channel"} } ,
+        "View a specific channel" => { "Channel info" => "Open channel"} } ,
 
     "Top streams" => {
 
-        "View top streams" => { "stream_name" => "***OpenUrl"} ,
-        "Top games being streamed" => { "game_name_streams" => { "stream_name" => "***Open URL" } } ,
+        "View top streams" => { "Stream info" => "Open stream"} ,
+        "Top games being streamed" => { "Top game streams" => { "Stream info" => "Open stream" } } ,
         "Newest/oldest streams" => {
-            "newest_streams" => { "stream_name" => "***OpenUrl"} ,
-            "oldest_streams" => { "stream_name" => "***OpenUrl"} } } ,
+            "Newest streams" => { "Stream info" => "Open stream"} ,
+            "Oldest streams" => { "Stream info" => "Open stream"} } } ,
 
     "Top videos" => {
 
-        "View Top Videos" => {
-            "By view count" => { "channel_name" => "***OpenVideoUrl"} ,
-            "By game name" => { "channel_name" => "***OpenVideoUrl"} ,
-            "By video type" => { "channel_name" => "***OpenVideoUrl"} ,
-            "By language" => { "channel_name" => "***OpenVideoUrl"} ,
-            "By length of video" => { "channel_name" => "***OpenVideoUrl"} } ,
-        "View a channel's videos" => { "channel_name" => "***OpenVideoUrl"} } }
+        "View top videos" => {
+            "Top videos by view count" => { "Video's channel info" => "Open channel's videos"} ,
+            "Top videos by game name" => { "Video's channel info" => "Open channel's videos"} ,
+            "Top videos by video type" => { "Video's channel info" => "Open channel's videos"} ,
+            "Top videos by language" => { "Video's channel info" => "Open channel's videos"} ,
+            "Longest videos" => { "Video's channel info" => "Open channel's videos"} } ,
+        "View a channel's videos" => { "Video's channel info" => "Open channel's videos"} } }
 
 
 

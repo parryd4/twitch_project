@@ -1,51 +1,131 @@
 class Queries
 
+  def self.show_directories
 
-  #
+    choices
+    input = gets.strip
+    puts
+
+    if $universal.include?(input)
+      eval(input)
+      query_handler
+    end
+
+    unless ("1".."#{next_directories.size}").include?(input)
+        puts
+        puts "Sorry that's not an option, try again."
+        puts
+        query_handler
+    end
+
+    forward(next_directories[input.to_i-1])
+
+  end
+
+
   def self.games_top_viewers
-    choice_array = [""]
-    puts "\nHere are the 10 most popular games by Viewers"
-    var = Game.order(viewers: :desc).first(10)
-    var.each.with_index do |x, i|
-      puts "#{i+1} #{x.name}: #{x.viewers} viewers watching on #{x.channels} channels"
-      choice_array << x.name
+
+    list = Game.order(viewers: :desc).first(10).unshift("back")
+    puts
+    lines(word: current_directory, n: 3)
+    puts
+    list.each.with_index do |x, i|
+      unless i == 0
+        puts "#{i}:#{' ' if i < 10} #{mf(x.name,"-",30)} #{commas(x.viewers)} viewers watching on #{commas(x.channels)} channels"
+        puts
+      end
     end
 
-    puts "\nTo see the top 10 streams playing that game, enter \#. Any other key will return."
-    input = STDIN.gets.to_i
-    if (1..10).include?(input)
-      self.top_streams_playing(choice_array[input])
-    else
-      puts "guess not"
+    puts $message
+    puts
+    input = gets.strip
+    puts
+
+    if $universal.include?(input)
+      eval(input)
+      self.games_top_viewers
     end
+
+    unless ("1"..."#{list.size}").include?(input)
+        puts
+        puts "Sorry that's not an option, try again."
+        puts
+        self.games_top_viewers
+    end
+
+    forward(next_directories[0],list[input.to_i].name)
 
   end
 
   def self.games_top_channels
-    choice_array = [""]
-    puts "\n Here are the 10 most popular games by channel count:"
-    var = Game.order(channels: :desc).first(10)
-    var.each.with_index do |x, i|
-      puts "#{i+1} #{x.name}: #{x.channels} channels with #{x.viewers} viewers"
-      choice_array << x.name
+    list = Game.order(channels: :desc).first(10).unshift("back")
+    puts
+    lines(word: current_directory, n: 3)
+    puts
+    list.each.with_index do |x, i|
+      unless i == 0
+        puts "#{i}:#{' ' if i < 10} #{mf(x.name,"-",30)} #{commas(x.viewers)} viewers watching on #{commas(x.channels)} channels"
+        puts
+      end
     end
 
-    puts "\nTo see the top 10 streams playing that game, enter \#. Any other key will return."
-    input = STDIN.gets.to_i
-    if (1..10).include?(input)
-      self.top_streams_playing(choice_array[input])
-    else
-      puts "guess not"
+    puts $message
+    puts
+    input = gets.strip
+    puts
+
+    if $universal.include?(input)
+      eval(input)
+      self.games_top_channels
     end
+
+    unless ("1"..."#{list.size}").include?(input)
+        puts
+        puts "Sorry that's not an option, try again."
+        puts
+        self.games_top_channels
+    end
+
+    forward(next_directories[0],list[input.to_i].name)
+
   end
 
   def self.top_streams_playing(game)
-    puts "Top 10 Streams Current Playing #{game}"
-    var = Stream.where(game_name: game).order(viewers: :desc).first(10)
-    var.each.with_index do |x, i|
-      puts "#{i+1}. #{x.channel_name}: #{x.viewers} currently viewing.\n Watch live at: #{x.url}"
+
+    list = Stream.where(game_name: game).order(viewers: :desc).first(10).unshift("back")
+    puts
+    lines(word: "Top #{game} streams", n: 3)
+    puts
+    list.each.with_index do |x, i|
+      unless i == 0
+        puts "#{i}:#{' ' if i < 10} #{mf(x.channel_name,"-",20)} #{commas(x.viewers)} viewers - #{x.status.first(40)}"
+        puts
+      end
     end
-    puts ""
+
+    puts "Type a number if you would like to load that stream."
+    puts
+    input = gets.strip
+    puts
+
+    if $universal.include?(input)
+      eval(input)
+      self.top_streams_playing(game)
+    end
+
+    unless ("1"..."#{list.size}").include?(input)
+        puts
+        puts "Sorry that's not an option, try again."
+        puts
+        self.top_streams_playing(game)
+    end
+
+    puts "Loading #{list[input.to_i].channel_name}'s stream']"
+    puts
+    spin(12)
+    system("open","#{list[input.to_i].url}")
+    self.top_streams_playing(game)
+
   end
 
   def self.streams_top

@@ -1,16 +1,37 @@
 require_relative '../config/environment'
 require_relative './modules.rb'
 require_relative './directories.rb'
+# require_relative '../bin/run.rb'
 
 include Helper
+
+
 
 $dir = []
 $string = "Directories"
 $universal = ["list","seed","seed_all","top","back","directories","leave"]
+$message = "What would you like to view?"
+$total_games = Twitchbase.make_hash_from_url("games/top?")["_total"]
+$total_streams = Twitchbase.make_hash_from_url("streams?")["_total"]
+$total_viewers = Game.sum(:viewers)
+$query_show_directories = ["main","Top games","Top channels","Top streams","Top videos","Top streams playing a game","Top channels streaming","Newest/oldest channels","Top games being streamed","View top videos"]
+
+def totals
+  puts "For your information there are:"
+  puts
+  spin(8)
+  fade("#{commas($total_viewers)} viewers watching", n: 1)
+  spin(8)
+  fade("#{commas($total_games)} games across", n: 1)
+  spin(8)
+  fade("#{commas($total_streams)} streams.", n: 1)
+  print
+end
+
+
 
 binding.pry
 welcome
-top
 
 # Directories.each { |x,y| p y }
 #
